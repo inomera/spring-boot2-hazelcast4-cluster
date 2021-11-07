@@ -1,0 +1,44 @@
+spring:
+  application:
+    name: app-hzcluster
+  profiles:
+    active: dev
+
+server:
+  port: 8080
+
+logging:
+  config: classpath:log4j2.xml
+
+hz-cluster:
+  cluster-name: app-local
+  network-config:
+    port: 5701
+    port-auto-increment: false
+    join:
+      multicast-config:
+        enabled: false
+      tcp-ip-config:
+        enabled: true
+        members:
+          - 127.0.0.1
+  cp-subsystem-config:
+    cp-member-count: 0
+  properties: |
+    hazelcast.health.monitoring.level=NOISY
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,loggers
+
+security-configurations:
+  bcrypt-password-strength: 11
+  users:
+    - username: admin
+      # Password is: d8a194e0b35f23f6fd5126d60296eb4f
+      password: '$2a$11$xrDaYpnpILVS3CEwe2twROxJaF9UImNHHlgQjxpe3CcEF1vqNrvPm'
+      authorities:
+        - ROLE_READ
+        - ROLE_WRITE

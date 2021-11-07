@@ -1,0 +1,48 @@
+plugins {
+    id 'org.springframework.boot' version '2.5.4'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'java'
+}
+
+group = 'com.inomera.muud'
+version = rootProject.file('VERSION').text.trim()
+sourceCompatibility = '11'
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+
+    all*.exclude group: "org.springframework.boot", module: "spring-boot-starter-tomcat"
+    all*.exclude group: "junit", module: "junit"
+    all*.exclude group: "org.springframework.boot", module: "spring-boot-starter-logging"
+    all*.exclude group: "ch.qos.logback", module: "logback-classic"
+    all*.exclude group: "ch.qos.logback", module: "logback-core"
+    all*.exclude group: "org.junit.vintage", module: "junit-vintage-engine"
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-undertow'
+    implementation 'org.springframework.boot:spring-boot-starter-log4j2'
+
+    implementation 'com.hazelcast:hazelcast:4.2.2'
+
+    implementation 'org.apache.commons:commons-lang3:3.12.0'
+
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.security:spring-security-test'
+}
+
+test {
+    useJUnitPlatform()
+}
