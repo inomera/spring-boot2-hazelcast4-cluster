@@ -4,7 +4,7 @@ Hazelcast 4 Cluster application designed for projects.
 
 Three(3) nodes/members hazelcast cluster
 
-![Hazelcast 4 Cluster](docs/hazelcast3-cluster.png "Hazelcast 4 Cluster")
+![Hazelcast 4 Cluster](docs/hazelcast4-cluster.png "Hazelcast 4 Cluster")
 
 Tech Stack
 
